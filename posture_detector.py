@@ -6,7 +6,7 @@ import time
 mp_drawing = mp.solutions.drawing_utils
 mp_pose = mp.solutions.pose
 
-# Store calibration angles
+# These are teh calibration angles
 GOOD_POSTURE_ANGLE = None
 BAD_POSTURE_ANGLE = None
 CALIBRATED_THRESHOLD = None
@@ -71,7 +71,7 @@ def calibrate_posture(cap, pose):
                 angles.append(angle)
                 
             cv2.imshow('Calibration', frame)
-            if cv2.waitKey(5) & 0xFF == 27:  # ESC
+            if cv2.waitKey(5) & 0xFF == 27:  # press the ESC key to quit at any time
                 break
         
         if len(angles) > 0:
@@ -104,13 +104,13 @@ def main():
         calibrate_posture(cap, pose)
         
         # Define a threshold based on the midpoint between GOOD and BAD posture angles
-        # You can tweak this logic as you see fit
+        # we can change this logic as you see fit
         if GOOD_POSTURE_ANGLE and BAD_POSTURE_ANGLE:
             CALIBRATED_THRESHOLD = (GOOD_POSTURE_ANGLE + BAD_POSTURE_ANGLE)/2
             print(f"[DEBUG] CALIBRATED_THRESHOLD = {CALIBRATED_THRESHOLD}")
         else:
-            # Fallback if calibration failed
-            CALIBRATED_THRESHOLD = 15  # default or fallback
+            # Fallback/default value if calibration failed
+            CALIBRATED_THRESHOLD = 15 
         
         # Close the calibration window
         cv2.destroyWindow('Calibration')
@@ -164,7 +164,7 @@ def main():
                             1, (255, 255, 255), 2, cv2.LINE_AA)
             
             cv2.imshow('Smart Posture Detector - Monitoring', frame)
-            if cv2.waitKey(5) & 0xFF == 27:  # ESC to quit
+            if cv2.waitKey(5) & 0xFF == 27:  # ESC to quit at any time
                 break
 
         cap.release()
