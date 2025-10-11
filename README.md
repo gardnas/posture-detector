@@ -53,11 +53,3 @@ python app.py
 The application uses MediaPipe to detect body landmarks (ear, shoulder, hip) and calculates the angle at the shoulder. During calibration, it records your good and bad posture angles, then sets a threshold as the midpoint. During monitoring, if your current angle falls below this threshold, it flags poor posture.
 
 The Flask backend streams video via MJPEG and provides a REST API for calibration and monitoring. The frontend updates statistics every 500ms and displays real-time feedback with color-coded indicators.
-
-## License
-
-MIT License
-
-## Author
-
-Spencer G - [@gardnas](https://github.com/gardnas)
